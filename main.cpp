@@ -1,6 +1,6 @@
 #include <iostream>
 
-class Shape{
+class Shape {
 private:
 
 public:
@@ -8,9 +8,11 @@ public:
 
     virtual double calculateArea() const = 0;
 
-    void displayArea() const{
+    void displayArea() const {
         std::cout << "Area: " << calculateArea() << std::endl;
     }
+
+    virtual ~Shape() = default;
 };
 
 class Circle : public Shape {
@@ -21,14 +23,14 @@ public:
 
     void draw() const override {
         std::cout << "Drawing a circle" << std::endl;
-}
+    }
 
-    double calculateArea() const override{
+    double calculateArea() const override {
         return 3.14 * radius * radius;
-}
+    }
 };
 
-class Rectangle : public Shape{
+class Rectangle : public Shape {
 private:
     double side_1, side_2;
 public:
@@ -38,12 +40,12 @@ public:
         std::cout << "Drawing a Rectangle" << std::endl;
     }
 
-    double calculateArea() const override{
+    double calculateArea() const override {
         return side_1 * side_2;
     }
 };
 
-class Triangle : public Shape{
+class Triangle : public Shape {
 private:
     double side, height;
 public:
@@ -53,31 +55,27 @@ public:
         std::cout << "Drawing a Triangle" << std::endl;
     }
 
-    double calculateArea() const override{
+    double calculateArea() const override {
         return 0.5 * side * height;
     }
 };
 
 int main() {
     Circle circle(5.0);
-    Rectangle rectangle(4,5);
-    Triangle triangle(3,4);
+    Rectangle rectangle(4, 5);
+    Triangle triangle(3, 4);
 
-    Shape* shape1 = &circle;
-    Shape* shape2 = &rectangle;
-    Shape* shape3 = &triangle;
+    Shape *shape1 = &circle;
+    Shape *shape2 = &rectangle;
+    Shape *shape3 = &triangle;
 
-    shape1 -> draw();
-    shape2 -> draw();
-    shape3 -> draw();
+    shape1->draw();
+    shape2->draw();
+    shape3->draw();
 
     shape1->displayArea();
     shape2->displayArea();
     shape3->displayArea();
-
-    delete shape1;
-    delete shape2;
-    delete shape3;
 
     return 0;
 }
